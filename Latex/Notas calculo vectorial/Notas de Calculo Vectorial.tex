@@ -1,0 +1,368 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[mathscr,mathcal]{euscript}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{shapepar}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{shapepar}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}{Proposición}[section]
+\newtheorem{definition}{Definición}[section]
+\newtheorem{axiom}{Axioma}
+\newtheorem{corollary}{Corolario}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{remark}{Remark}
+
+\title{Notas de Cálculo Diferencial Vectorial.}
+\author{Carlos Francisco Flores Galicia.}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\chapter{Funciones de $\mathbb{R}$ a $\mathbb{R}^n$.}
+\subsection{Funciones vectoriales y algunas de sus propiedades.}
+
+%Falta agregar curvatura y que no se cumple el teorema del valor medio. Tambien el teorema de que si es diferenciable entonces es continua%
+
+Llamaremos función vectorial de variable real o simplemente función vectorial, a aquellas con dominio en
+un subconjunto de $\mathbb{R}$ y codominio en un espacio vectorial $\mathbb{R}^n$.
+
+\begin{center}
+    $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$
+\end{center}
+
+Puesto que $f(x)$ es elemento de $\mathbb{R}^n$, éste tiene $n$ coordenadas, las cuales son en general, funciones de la variable $x$. Así podemos escribir
+
+\begin{center}
+    $f(x)=(f_1(x),f_2(x),...,f_n(x))$
+\end{center}
+
+Por otra parte, el dominio de una función vectorial es la intersección de los dominios de cada componente $f_i(x)$.
+
+\begin{center}
+    $\displaystyle Dom(f(x))= \bigcap^n_{i=1}f_i(x)$
+\end{center}
+
+\begin{definition}
+Sean $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$,  $g:V \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ y $u:W \subseteq \mathbb{R} \rightarrow \mathbb{R}$ funciones, entonces \\[1\baselineskip]
+a) $(f+g)(x)=f(x)+g(x)$\\[0\baselineskip]
+b) $(uf)(x)=u(x)f(x)$\\[0\baselineskip]
+c) $(f \cdot g)(x)=f(x) \cdot g(x)$\\[0\baselineskip]
+d) $(f \times g)(x)=f(x) \times g(x)$ si $f,g \in \mathbb{R}^3$\\[0\baselineskip]
+\end{definition}
+\subsection{Límites}
+\begin{definition}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial. El límite de $f$ cuando $x$ tiende a $x_o$ es $L$, y se expresa como $\displaystyle \lim_{x \to x_o}f(x)=L$, si y solo si para todo $\epsilon > 0$ existe algún $\delta > 0$ tal que, para todo $x$, si $0<|x-x_o|<\delta$ entonces $||f(x)-L||<\epsilon$.
+\end{definition}
+\begin{theorem}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial, donde se tiene que $f(x)=(f_1(x),f_2(x),...,f_n(x))$. Entonces $\displaystyle \lim_{x \to x_o}f(x)=L=(l_1,l_2,...,l_n)$ existe si y solo si existe cada limite $\displaystyle \lim_{x \to x_o}f_i(x)=l_i$.
+\end{theorem}
+\begin{proof}
+ Supongamos que $\displaystyle \lim_{x \to x_o}f(x)=L=(l_1,l_2,...,l_n)$ existe. Entonces para todo $\epsilon > 0$ existe algún $\delta > 0$ tal que, para todo $x$, si $0<|x-x_o|<\delta$ entonces $||f(x)-L||<\epsilon$. Pero como 
+ 
+ \begin{center}
+    $||f(x)-L||=||f_1(x)-l_1, f_1(x)-l_1,...,f_n(x)-l_n||$ \\[1\baselineskip]
+    $\displaystyle = \sqrt{\sum_{i=1}^{n}(f_i(x)-l_i)^2} \ <\epsilon$
+\end{center}
+
+Se tiene que 
+
+ \begin{center}
+    $|f_i(x)-l_i|=\sqrt{(f_i(x)-l_i)^2}\leq \displaystyle \sqrt{\sum_{i=1}^{n}(f_i(x)-l_i)^2}$$\ <\epsilon$
+\end{center}
+
+Por tanto, como cada $|f_i(x)-l_i|<\epsilon$ para todo $0<i\leq n$ y existe $\delta > 0$ tal que $0<|x-x_o|<\delta$, entonces $\displaystyle \lim_{x \to x_o}f_i(x)=l_i$ existe.
+\\[1\baselineskip]
+Por otra parte, supongamos que cada limite $\displaystyle \lim_{x \to x_o}f_i(x)=l_i$ existe. Entonces para los $\epsilon_i >0$ existen $\delta_i >0$ con $0<i\leq n$, tales que si $0<|x-x_o|<\delta_i$ entonces $|f_i(x)-l_i|<\epsilon_i$. Sea $\epsilon >0$, luego definamos $\epsilon_i =\frac{\epsilon}{\sqrt{n}}$ y $\delta=min(\delta_1,...,\delta_n)$. Para este $\delta$ se tiene que si $0<|x-x_o|<\delta$ entonces $|f_i(x)-l_i|<\frac{\epsilon}{\sqrt{n}}$. Luego
+
+\begin{center}
+       $||f(x)-L||=\displaystyle \sqrt{\sum_{i=1}^{n}(f_i(x)-l_i)^2}$$\displaystyle\ < \sqrt{\sum_{i=1}^{n}(\frac{\epsilon}{\sqrt{n}})^2}$$\ =\epsilon$
+\end{center}
+
+Por lo tanto $\displaystyle \lim_{x \to x_o}f(x)=L$.
+\end{proof}
+\begin{theorem}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial. Si $\displaystyle \lim_{x \to x_o}f(x)=L_1$ y $\displaystyle \lim_{x \to x_o}f(x)=L_2$ entonces $L_1=L_2$. 
+\end{theorem}
+\begin{proof}
+ Probémoslo por contradicción, es decir, supongamos que $L_1 \neq L_2$. Por hipótesis tenemos que para todo $\epsilon > 0$ existe algún $\delta_1 > 0$ tal que, para todo $x$, si $0 < |x-x_o| < \delta_1$ entonces $||f(x)-L_1|| < \epsilon$. Por otra parte, también por hipótesis se tiene que para todo $\epsilon > 0$ existe algún $\delta_2 > 0$ tal que, para todo $x$, si $0 < |x-x_o| < \delta_2$ entonces $||f(x)-L_2|| < \epsilon$. Sea $\delta=min(\delta_1, \delta_2)$. Para completar la demostración, tomemos un $\epsilon > 0$ para el cual no puedan verificarse simultáneamente las condiciones de que $||f(x)-L_1|| < \epsilon$ y $||f(x)-L_2|| < \epsilon$. Como $L_1 \neq L_2$, entonces $||L_1-L_2|| > 0$, así que tomemos $\epsilon=\frac{||L_1-L_2||}{2}$. En consecuencia se cumple que 
+ 
+ \begin{center}
+       $||f(x)-L_1||<\frac{||L_1-L_2||}{2}$ y $||f(x)-L_2||<\frac{||L_1-L_2||}{2}$
+\end{center}
+
+Esto implica que para $0<|x-x_o|<\delta$ se verifica
+
+\begin{center}
+       $||L_1-L_2||=||L_1-f(x)+f(x)-L_2||$
+        \\[1\baselineskip]
+       $\leq||L_1-f(x)||+||L_2-f(x)||$
+        \\[1\baselineskip]
+       $<\frac{||L_1-L_2||}{2}+\frac{||L_1-L_2||}{2}=||L_1-L_2||$
+\end{center}
+
+Esto es una contradicción, por lo tanto $L_1=L_2$.
+\end{proof}
+\subsection{Continuidad}
+\begin{definition}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial. Se dice que $f$ es continua en $x_o\in U$ si y solo si
+\begin{center}
+       $\displaystyle \lim_{x \to x_o}f(x)=f(x_o)$
+\end{center}
+\end{definition}
+\begin{theorem}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial tal que $f(x)=(f_1(x),...,f_n(x))$. Entonces $f$ es continua en $x_o\in U$ si y solo si $f_1,...,f_n$ son continuas en $x_o$.
+\end{theorem}
+\begin{proof}
+ Supongamos que $f$ es continua en $x_o$, entonces se cumple que $\displaystyle \lim_{x \to x_o}f(x)=f(x_o)$. Por otra parte, $\displaystyle \lim_{x \to x_o}f(x)=(\lim_{x \to x_o}f_1(x),...,\lim_{x \to x_o}f_n(x))$ y también $f(x_o)=(f_1(x_o),...,f_n(x_0))$, pero por hipótesis estas dos expresiones son iguales, entonces  $\displaystyle(\lim_{x \to x_o}f_1(x),...,\lim_{x \to x_o}f_n(x))=(f(x_o)=(f_1(x_o),...,f_n(x_0))$. Así que por definicion de igualdad de vectores, se cumple entonces que $\displaystyle \lim_{x \to x_o}f_1(x)=f_1(x_o),...,\lim_{x \to x_o}f_n(x)=f_n(x_o)$. Por lo tanto $f_1,...,f_n$ son continuas en $x_o$.
+ \\[1\baselineskip]
+ La demostración de la segunda implicación se sigue de los pasos de la primera implicación vistos de regreso.
+\end{proof}
+%Añadir propiedades de las funciones continuas%
+\subsection{Derivadas}
+\begin{definition}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial siendo $U$ un intervalo abierto y $x_o\in \mathbb{R}$. La derivada de $f$ en $x_o$, denotada por $f'(x_o)$ es \begin{center}
+       $\displaystyle f'(x_o)=\lim_{h \to 0}\frac{f(x_o+h)-f(x_o)}{h}$
+\end{center}
+Cuando este límite existe.
+\end{definition}
+\begin{theorem}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial siendo $U$ un intervalo abierto y $x_o\in \mathbb{R}$. La derivada $f'(x_o)$ existe si y solo si cada derivada $f'_1(x_o),...,f'_n(x_o)$ existe.
+\end{theorem}
+\begin{proof}
+ Supongamos que $f'(x_o)$ existe, entonces 
+\begin{center}
+       $\displaystyle f'(x_o)=\lim_{h \to 0}\frac{f(x_o+h)-f(x_o)}{h}$
+\end{center}
+\begin{center}
+       $=\displaystyle \lim_{h \to 0}\left(\frac{(f_1(x_o+h),f_2(x_o+h),...,f_n(x_o+h))-(f_1(x_o),f_2(x_o),...,f_n(x_o))}{h}\right)$
+\end{center}
+\begin{center}
+       $=\displaystyle \lim_{h \to 0}\left(\frac{f_1(x_o+h)-f_1(x_o)}{h},\frac{f_2(x_o+h)-f_2(x_o)}{h},...,\frac{f_n(x_o+h)-f_n(x_o)}{h}\right)=$
+\end{center}
+\begin{center}
+       $\displaystyle  \left(\lim_{h \to 0} \frac{f_1(x_o+h)-f_1(x_o)}{h},\lim_{h \to 0} \frac{f_2(x_o+h)-f_2(x_o)}{h},...,\lim_{h \to 0} \frac{f_n(x_o+h)-f_n(x_o)}{h}\right)$
+\end{center}
+Por el teorema 1.0.1, cada límite $\displaystyle \lim_{h \to 0} \frac{f_i(x_o+h)-f_i(x_o)}{h}$ existe, por lo tanto cada derivada $f'_1(x_o),...,f'_n(x_o)$ existe.\\\\
+La demostración de la segunda implicación se sigue de los pasos de la primera implicación vistos de regreso. 
+\end{proof}
+\begin{definition}
+La derivada $f'(x_o)$ de una función vectorial $f$ puede ser asociada a una matriz $n\times 1$, la cual es
+conocida como la matriz Jacobiana de $f$ en el punto $x_o$, y se denota por
+
+\begin{center}
+$Jf(x_o)=\begin{bmatrix}
+  f'_1(x_o) \\
+  \vdots \\
+  f'_n(x_o)
+\end{bmatrix}$
+\end{center}
+\end{definition}
+\begin{theorem}
+Sean $f$, $g$ funciones vectoriales y $u$ una función real, todas diferenciables, entonces\\\\
+a) $(f+g)'(x)=f'(x)+g'(x)$\\
+b) $(uf)'(x)=u'(x)f(x)+u(x)f'(x)$\\
+c) $(f \cdot g)'(x)=f'(x) \cdot g(x)+f(x) \cdot g'(x)$\\
+d) $(f \times g)'(x)=f'(x) \times g(x)+f(x) \times g'(x)$ si $f,g \in \mathbb{R}^3$\\
+\end{theorem}
+\begin{proof}
+ a)\\
+ \begin{center}
+ $(f+g)'(x)=\displaystyle \lim_{h \to 0}\frac{(f+g)(x_o+h)-(f+g)(x_o)}{h}$
+ \end{center}
+ \begin{center}
+ $=\displaystyle \lim_{h \to 0}\frac{f(x_o+h)+g(x_o+h)-\left[f(x_o)+g(x_o)\right]}{h}$
+ \end{center}
+ \begin{center}
+ $=\displaystyle \lim_{h \to 0}\frac{f(x_o+h)+g(x_o+h)-f(x_o)-g(x_o)}{h}$
+ \end{center}
+ \begin{center}
+ $=\displaystyle \lim_{h \to 0}\frac{f(x_o+h)-f(x_o)+g(x_o+h)-g(x_o)}{h}$
+ \end{center}
+  \begin{center}
+ $=\displaystyle \lim_{h \to 0}\left(\frac{f(x_o+h)-f(x_o)}{h}+\frac{g(x_o+h)-g(x_o)}{h}\right)$
+ \end{center}
+ \begin{center}
+ $=f'(x)+g'(x)$
+ \end{center}
+ b)
+ \begin{center}
+ $(uf)'(x)=\displaystyle \lim_{h \to 0}\frac{(uf)(x_o+h)-(uf)(x_o)}{h}$
+ \end{center}
+ \begin{center}
+ $=\displaystyle \lim_{h \to 0}\frac{u(x_o+h)f(x_o+h)-u(x_o)f(x_o)}{h}$
+ \end{center}
+  \begin{center}
+ $=\displaystyle \lim_{h \to 0}\frac{u(x_o+h)\left[f(x_o+h)-f(x_o)\right]+\left[u(x_o+h)-u(x_o)\right]f(x_o)}{h}$
+ \end{center}
+ \begin{center}
+ $=\displaystyle \lim_{h \to 0}\left(\frac{u(x_o+h)\left[f(x_o+h)-f(x_o)\right]}{h}+\frac{\left[u(x_o+h)-u(x_o)\right]f(x_o)}{h}\right)$
+ \end{center}
+  \begin{center}
+ $=u(x)f'(x)+u'(x)f(x)$
+  \end{center}
+    \begin{center}
+ $=u'(x)f(x)+u(x)f'(x)$
+  \end{center}
+ Las demostraciones de los incisos c) y d) son análogas a los del inciso b), usando las correspondientes operaciones.
+\end{proof}
+\chapter{Curvas.}
+\begin{definition}
+Una relación $\sigma:(a,b)\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ continua en $(a,b)$ se llama trayectoria. A la imagen de $\sigma$ se le llama curva.
+\end{definition}
+\begin{definition}
+Decimos que $\sigma:(a,b)\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una trayectoria simple si $\sigma$ es inyectiva, esto es, que si $\sigma(x_1)=\sigma(x_2)$ entonces $x_1=x_2$. Geométricamente significa que la curva no se cruza a sí misma.
+\end{definition}
+\begin{definition}
+Si $f:[a,b]\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una trayectoria, el vector unitario tangente $T$ es otra función vectorial asociada a la curva, y se define por
+\begin{center}
+    $T(x)=\frac{f'(x)}{||f'(x)||}$ si $||f'(x)||\neq 0$
+\end{center}
+\end{definition}
+\begin{proposition}
+Si $n:U\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una función vectorial diferenciable cuya imagen $n(x)$ es un vector unitario, entonces $n(t)\cdot n'(t)=0$.
+\begin{proof}
+ Tenemos que $n(t)\cdot n(t)=1$, si derivamos esta expresión nos queda $n'(t)\cdot n(t)+n(t)\cdot n'(t)=0$, por tanto $2n'(t)\cdot n(t)=0$, y así obtenemos $n(t)\cdot n'(t)=0$.
+\end{proof}
+\end{proposition}
+Lo que nos dice la proposición anterior es que si tenemos una función vectorial $n$ cuyas imágenes son vectores unitarios, entonces las imágenes de la derivada $n'$ son vectores perpendiculares a los de las imágenes de $n$, o bien, la derivada $n'$ es directamente igual a cero. Este hecho motiva la siguiente definición.
+\begin{definition}
+Si $f:[a,b]\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una trayectoria y $f'(x)\neq 0$, el vector normal unitario $N$ es otra función vectorial asociada a la curva, y se define por
+\begin{center}
+    $N(x)=\frac{f''(x)}{||f''(x)||}$
+\end{center}
+\end{definition}
+Cuando los dos vectores unitarios $T$ y $N$ están trazados en el punto de la curva $f(x_o)$, determinan un plano llamado plano osculador de la curva. El plano osculador es el plano que pasa por $f(x_o)$ que mejor se adapta a la curva en cada uno de sus puntos. Si la curva es plana, el plano osculador coincide con el plano de la curva. En el espacio, la ecuación del plano osculador de una curva en un punto $(x_o,y_o,z_o)$ es
+\begin{center}
+    $(x,y,z)=(x_o,y_o,z_o)+\lambda N(x_o,y_o,z_o)+\beta T(x_o,y_o,z_o)$, $\lambda, \beta \in \mathbb{R}$
+\end{center}
+\begin{definition}
+Si $f:[a,b]\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una trayectoria y $f'(x)\neq 0$, el vector binormal unitario $B$ es otra función vectorial asociada a la curva, y se define por
+\begin{center}
+    $B(x)=\frac{T(x)\times N(x)}{||T(x)\times N(x)||}$
+\end{center}
+\end{definition}
+\begin{definition}
+Si $f:[a,b]\subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ es una trayectoria y $f(x_o)\neq 0$, la recta tangente al punto $f(x_o)$ tiene la ecuación
+\begin{center}
+    $L(t)=f(x_o)+(t-x_o)T(x_o)$, con $t\in \mathbb{R}$
+\end{center}
+
+\end{definition}
+\chapter{Funciones de $\mathbb{R}^n$ a $\mathbb{R}$.}
+\subsection{Definiciones básicas.}
+\begin{definition}
+Una función $f:U\subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ es una función que asocia a cada vector $(x_1,x_2,...,x_n)$ un número real $f(x_1,x_2,...,x_n)$.
+\end{definition}
+\begin{definition}
+Sea $f:U\subseteq \mathbb{R}^n \rightarrow \mathbb{R}$
+ y $c\in \mathbb{R}$. Definimos el conjunto de nivel de valor $c$ de la función $f$ como
+\begin{center}
+    $C=\{x\in U \ | \ f(x)=c\}$
+\end{center}
+\end{definition}
+\subsection{Límites}
+\begin{definition}
+Sea $f:U\subseteq \mathbb{R}^n \rightarrow \mathbb{R}$, donde $U$ es un conjunto abierto. El límite de $f$ cuando $x$ tiende a $x_o$ es $L$, y se expresa como $\displaystyle \lim_{x \to x_o}f(x)=L$, si y solo si para todo $\epsilon > 0$ existe algún $\delta > 0$ tal que, para todo $x$, si $0<||x-x_o||<\delta$ entonces $|f(x)-L|<\epsilon$.
+\end{definition}
+Note que la definición de límite para funciones de $\mathbb{R}^n$ a $\mathbb{R}$ no es la misma que para funciones de $\mathbb{R}$ a $\mathbb{R}^n$.
+\begin{theorem}
+Sea $f:U \subseteq \mathbb{R} \rightarrow \mathbb{R}^n$ una función vectorial. Si $\displaystyle \lim_{x \to x_o}f(x)=L_1$ y $\displaystyle \lim_{x \to x_o}f(x)=L_2$ entonces $L_1=L_2$. 
+\end{theorem}
+\begin{proof}
+ Probémoslo por contradicción, es decir, supongamos que $L_1 \neq L_2$. Por hipótesis tenemos que para todo $\epsilon > 0$ existe algún $\delta_1 > 0$ tal que, para todo $x$, si $0<||x-x_o||<\delta_1$ entonces $|f(x)-L_1|<\epsilon$. Por otra parte, también por hipótesis se tiene que para todo $\epsilon > 0$ existe algún $\delta_2 > 0$ tal que, para todo $x$, si $0<||x-x_o||<\delta_2$ entonces $|f(x)-L_2|<\epsilon$. Sea $\delta=min(\delta_1, \delta_2)$. Para completar la demostración, tomemos un $\epsilon>0$ para el cual no puedan verificarse simultáneamente las condiciones de que $|f(x)-L_1|<\epsilon$ y $|f(x)-L_2|<\epsilon$. Como $L_1 \neq L_2$, entonces $|L_1-L_2|>0$, así que tomemos $\epsilon=\frac{|L_1-L_2|}{2}$. En consecuencia se cumple que 
+ 
+ \begin{center}
+       $|f(x)-L_1|<\frac{|L_1-L_2|}{2}$ y $|f(x)-L_2|<\frac{|L_1-L_2|}{2}$
+\end{center}
+
+Esto implica que para $0<||x-x_o||<\delta$ se verifica
+
+\begin{center}
+       $|L_1-L_2|=|L_1-f(x)+f(x)-L_2|$
+\end{center}
+\begin{center}
+       $\leq|L_1-f(x)|+|L_2-f(x)|$
+\end{center}
+\begin{center}
+       $<\frac{|L_1-L_2|}{2}+\frac{|L_1-L_2|}{2}=|L_1-L_2|$
+\end{center}
+
+Esto es una contradicción, por lo tanto $L_1=L_2$.
+\end{proof}
+La demostración anterior es muy similar a la del caso de funciones vectoriales, sin embargo, no es la misma.
+\subsection{Continuidad.}
+\begin{definition}
+Sea $f:U \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ una función. Se dice que $f$ es continua en $x_o\in U$ si y solo si
+\begin{center}
+       $\displaystyle \lim_{x \to x_o}f(x)=f(x_o)$
+\end{center}
+\end{definition}
+%Añadir propiedades de las funciones continuas%
+\subsection{Derivadas.}
+\begin{definition}
+Sea $U \subseteq \mathbb{R}^n$ un conjunto abierto tal que  $f:U \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ es una función y $\bar{v}\in \mathbb{R}^n$ es un vector unitario. Entonces la derivada parcial  de $f$ en dirección $\bar{v}$  se definen como
+\\
+\begin{center}
+$D_v f(x)=\displaystyle \lim_{h \to 0}\frac{f(x+h\bar{v})-f(x)}{h}$
+\end{center}
+\end{definition}
+Si los vectores unitarios son los de la base canónica, para el caso particular en $\mathbb{R}^3$, se suele usar la notación $\frac{\partial f}{\partial x}$ cuando la dirección es $(1,0,0)$, $\frac{\partial f}{\partial y}$ cuando la dirección es $(0,1,0)$ y $\frac{\partial f}{\partial z}$ cuando la dirección es $(0,0,1)$. En general, usaremos la notación $\frac{\partial f}{\partial x_j}$ para indicar la derivada parcial de $f$ en dirección $\bar{e_j}$, donde $\bar{e_j}$ es el vector $j$-ésimo de la base canónica definido por $\bar{e_j}=(0, ..., 1, ..., 0)$ con el 1 en la posición $j$-ésima.
+\begin{definition}
+Sea $U \subseteq \mathbb{R}^n$ un conjunto abierto y  $f:U \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$. Supongamos que existen $\frac{\partial f}{\partial x_j}$ para todo $1 \leq j \leq n$. Entonces la matriz Jacobiana de $f$ en el punto $x_o$ es
+\begin{center}
+    $Jf(x_o)=(\frac{\partial f}{\partial x_1}(x_o),\frac{\partial f}{\partial x_2}(x_o),...,\frac{\partial f}{\partial x_n}(x_o))$
+\end{center}
+En el caso cuando la función va de $\mathbb{R}^n$ a $\mathbb{R}$, a la matriz Jacobiana también se le llama gradiente de $f$, y se denota por $\nabla f$. Por tanto $\nabla f=Jf$.
+\end{definition}
+Para funciones que van de $\mathbb{R}$ a $\mathbb{R}^n$ se tiene que la función es diferenciable si cumple la existencia de cierto límite (el que indica la propia definición de derivada). Sin embargo, para las funciones de $\mathbb{R}^n$ a $\mathbb{R}$ esto no es suficiente. La existencia de las derivadas parciales en un punto no garantiza que la función sea diferenciable en ese punto. Un ejemplo de esto es la función $f(x,y)=\sqrt[3]{xy}$. En efecto, las derivadas parciales respecto a $x$ y a $y$ existen en el punto $(0,0)$, pues
+\begin{center}
+    $\frac{\partial f}{\partial x}(0,0)=\displaystyle \lim_{h \to 0}\frac{f(h,0)-f(0,0)}{h}=\lim_{h \to 0}\frac{0-0}{h}=0$,
+\end{center}
+De forma análoga, $\frac{\partial f}{\partial x}(0,0)=0$ (note que ambas derivadas parciales no son continuas en $(0,0)$, por eso se utilizó el límite de la definición de derivada parcial). Sin embargo, la gráfica de dicha función no es ``suave'' en el punto $(0,0)$, por lo que no es diferenciable ahí. Necesitamos entonces una rigurosa definición de diferenciabilidad para funciones de $\mathbb{R}$ a $\mathbb{R}^n$. Dicha definicón es la siguiente.
+\begin{definition}
+Sea $U \subseteq \mathbb{R}^n$ un conjunto abierto y  $f:U \subseteq \mathbb{R}^n \rightarrow \mathbb{R}$ una función. Decimos que $f$ es diferenciable en $x_o \in U$ si existen $\frac{\partial f}{\partial x_j}$ para todo $1 \leq j \leq n$ y además
+\begin{center}
+$\displaystyle \lim_{x \to x_o}\frac{|f(x)-f(x_o)-Jf(x_o)(x-x_o)|}{||\bar{x}-\bar{x}_o||}=0$
+\end{center}
+Siendo $(x-x_o)$ el vector columna $(x-x_o)=$
+$\begin{bmatrix}
+  x_1-x_{o_1} \\
+  \vdots \\
+  x_n-x_{o_n}
+\end{bmatrix}$
+\end{definition}
+
+\begin{definition}
+Sea $f:\mathbb{R}^n \rightarrow \mathbb{R}$ diferenciable en $x_o$. El hiperplano tangente a la gráfica de $f$ en el punto $x_o$ es
+\begin{center}
+$P=f(x_o)+Jf(x_o)(x-x_o)$
+\end{center}
+Siendo $(x-x_o)$ el vector columna $(x-x_o)=$
+$\begin{bmatrix}
+  x_1-x_{o_1} \\
+  \vdots \\
+  x_n-x_{o_n}
+\end{bmatrix}$
+\end{definition}
+%Agregar teorema de que si es difrencoable ent. es continua y tambien el teorema de que si las parciales son continyuas, ent. la función es derivable%
+\subsection{Regla de la cadena.}
+Al igual que como ocurre en funciones de una variable, a veces se precisa derivar composición de funciones, y para ello se usa la llamada regla de la cadena. Supongamos que $g: \mathbb{R} \rightarrow \mathbb{R}^n$ es una función diferenciable y $f: \mathbb{R}^n. \rightarrow \mathbb{R}$. Sea $h=f\circ g$, esto es, $h(t)=f(g(t))=f(f_1(t),f_2(t),...,f_n(t))$, donde $g(t)=(f_1(t),f_2(t),...,f_n(t))$. Entonces la derivada de $h$ respecto a $t$ es
+\begin{center}
+    $\frac{dh}{dt}=\frac{\partial f}{\partial f_1}\frac{df_1}{dt}+\frac{\partial f}{\partial f_2}\frac{df_2}{dt}+...+\frac{\partial f}{\partial f_n}\frac{df_n}{dt}$
+\end{center}
+O bien
+\begin{center}
+    $\frac{dh}{dt}=\nabla f(g(t))\cdot g'(t)$
+\end{center}
+La demostración de lo anterior no es complicado, pero es laborioso y algo extenso, así que no se expondrá en el presente texto.
+
+\end{document}
